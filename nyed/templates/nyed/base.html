@@ -1,0 +1,35 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <script type="text/javascript" src="{% static 'nyed/jquery.js' %}"></script>
+    <script type="text/javascript" src="{% static 'nyed/jquery-ui.js' %}"></script>
+    <link rel="stylesheet" type="text/css" href="{% static 'nyed/jquery-ui.css' %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'nyed/main.css' %}">
+    <title>NYSED Data Analysis Site</title>
+  </head>
+  <body>
+    <header id="main-header">
+      <div class="container">
+        <a href="{% url 'nyed:home' %}"><img src="{% static 'nyed/nysed_logo.gif' %}" width="50%" height="40%"></a>        
+      </div>
+    
+    <nav id="navbar">
+      <div class="container">
+        <ul>         
+          <li><a href="{% url 'nyed:base_assessment' %}">Students Academic Progress Data</a></li>
+          <li><a href="{% url 'nyed:base_correlation' %}">Investigative Data Analysis</a></li>
+          <li><a href="{% url 'nyed:about' %}">About</a></li>
+        </ul>    
+      </div>
+      </nav>
+    </header>
+    <main>  
+      <div class="container">
+        {% block sidebar %}{% endblock %}
+        {% block content %}{% endblock %}
+      </div>
+    </main>   
+   </body>
+   <br><br><br>   
+</html>

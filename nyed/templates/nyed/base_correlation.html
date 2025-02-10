@@ -1,0 +1,48 @@
+{% extends "nyed/base.html" %}
+
+{% block sidebar %}
+
+    <aside id="sidebar">
+        <h4 class="search_title">View Correlation Analysis</h4>
+        <hr class="search_seperator">
+        <label for='year' class="search_instruct">Select a Correlation Variable:</label><br>
+        <form action="{% url 'nyed:correlation_data' %}" method="get">
+            {% csrf_token %}          
+            <label>&nbsp;&nbsp;Academic Performance vs. </label><br>
+            <input type="radio" id="correlation_classsize" name="correlation_type" value="ACS">
+            <label for="correlation_classsize">Average Class Size</label><br>
+            <input type="radio" id="correlation_eco" name="correlation_type" value="PFL" checked>
+            <label for="correlation_eco">Free Lunch Eligibility</label><br>            
+            <br>
+            <label for='year' class="search_instruct">Select a Year:</label><br>
+            <select id="year" name="year">
+                <option value="2013">2013</option>           
+            </select><br>
+          
+            <br>
+            <input type="submit" value="Submit">
+        </form>
+    </aside>
+{% endblock sidebar %}
+
+{% block content %}
+
+    <div id="main_content">
+        {% if error_msg %}
+            <h3> {{ error_msg }} </h3>
+            <br>
+        {% endif %}  
+        <h2>Correlation Analysis</h2>
+        <p>This section performs data analysis to investigate if there is any correlation between
+        students' acadmic performance and certain external factors that may have affected their performace,
+        such as school's average class size, student family's financial status, etc.        
+        <br><br>
+        To view the result of a Correlation Analysis, please</p>
+        <ol>
+            <li>Select a "Correlation Variable": Average Class Size or Free Lunch Eligibility</li>
+            <li>Choose a "Year" for which the source data is available</li>
+        </ol>
+        Data Source:<br>
+        All analyses are conducted using the open datasets provided by <a href="http://data.nysed.gov" target=_blank>New York State Education Department</a>
+    </div>
+{% endblock content %}

@@ -1,0 +1,122 @@
+
+{% extends "nyed/base_assessment.html" %}
+{% load list_index %}
+{% load static %}
+
+{% block content %}
+<div id="main_content">
+    <h2 >{{district_info.name_desc}}</h2>
+    <h3 id="entity_name">{{req_school_year}} Grade{{req_grade}} Student Group ELA Assessment History</h3>
+    <img src="data:image/png;base64, {{ela_chart|safe}}" class='data_img'>
+    <br>
+    <br>    
+    <table class="data_table">        
+        <thead>
+            <tr>
+                <td></td>
+                {% for yg in ela_result_dict.year_grade %}
+                    <th scope="col">{{ yg }}</th>
+                {% endfor %}
+            </tr>
+        </thead>
+        <tbody>
+            <tr>    
+                <th scope="row"># of Students Scored 4</th>
+                {% for c in ela_result_dict.L4_count %}                   
+                    <td>{{ c }} ({{ ela_result_dict.L4_pct|index:forloop.counter0 }}&percnt;)</td> 
+                {% endfor %}
+            </tr> 
+            <tr>    
+                <th scope="row"># of Students Scored 3</th>
+                {% for c in ela_result_dict.L3_count %}                   
+                    <td>{{ c }} ({{ ela_result_dict.L3_pct|index:forloop.counter0 }}&percnt;)</td> 
+                {% endfor %}
+            </tr>
+            <tr>    
+                <th scope="row"># of Students Scored 2</th>
+                {% for c in ela_result_dict.L2_count %}                   
+                    <td>{{ c }} ({{ ela_result_dict.L2_pct|index:forloop.counter0 }}&percnt;)</td> 
+                {% endfor %}
+            </tr>
+            <tr>    
+                <th scope="row"># of Students Scored 1</th>
+                {% for c in ela_result_dict.L1_count %}                   
+                    <td>{{ c }} ({{ ela_result_dict.L1_pct|index:forloop.counter0 }}&percnt;)</td> 
+                {% endfor %}
+            </tr>            
+            
+            <tr>
+                <th scope="row">Total # of Students Tested</th>
+                {% for tt in ela_result_dict.total_tested %}
+                    <td>{{ tt }}</td>
+                {% endfor %}
+            </tr>
+            <tr>
+                <th scope="row">Avg Raw Test Score</th>
+                {% for ar in ela_result_dict.avg_rawscore %}
+                    <td>{{ ar }}</td>
+                {% endfor %}
+            </tr>
+        </tbody>           
+    </table>
+
+    <br><br>
+    <h3 id="entity_name">{{req_school_year}} Grade{{req_grade}} Student Group Math Assessment History</h4>   
+    <img src="data:image/png;base64, {{math_chart|safe}}" class='data_img'>
+    <br>
+    <br>
+    <table class="data_table">        
+        <thead>
+            <tr>
+                <td></td>
+                {% for yg in math_result_dict.year_grade %}
+                    <th scope="col">{{ yg }}</th>
+                {% endfor %}
+            </tr>
+        </thead>
+        <tbody>
+            <tr>    
+                <th scope="row"># of Students Scored 4</th>
+                {% for c in math_result_dict.L4_count %}                   
+                    <td>{{ c }} ({{ math_result_dict.L4_pct|index:forloop.counter0 }}&percnt;)</td> 
+                {% endfor %}
+            </tr> 
+            <tr>    
+                <th scope="row"># of Students Scored 3</th>
+                {% for c in math_result_dict.L3_count %}                   
+                    <td>{{ c }} ({{ math_result_dict.L3_pct|index:forloop.counter0 }}&percnt;)</td> 
+                {% endfor %}
+            </tr>
+            <tr>    
+                <th scope="row"># of Students Scored 2</th>
+                {% for c in math_result_dict.L2_count %}                   
+                    <td>{{ c }} ({{ math_result_dict.L2_pct|index:forloop.counter0 }}&percnt;)</td> 
+                {% endfor %}
+            </tr>
+            <tr>    
+                <th scope="row"># of Students Scored 1</th>
+                {% for c in math_result_dict.L1_count %}                   
+                    <td>{{ c }} ({{ math_result_dict.L1_pct|index:forloop.counter0 }}&percnt;)</td> 
+                {% endfor %}
+            </tr>            
+            
+            <tr>
+                <th scope="row">Total # of Students Tested</th>
+                {% for tt in math_result_dict.total_tested %}
+                    <td>{{ tt }}</td>
+                {% endfor %}
+            </tr>
+            <tr>
+                <th scope="row">Avg Raw Test Score</th>
+                {% for ar in math_result_dict.avg_rawscore %}
+                    <td>{{ ar }}</td>
+                {% endfor %}
+            </tr>
+        </tbody>           
+    </table>
+    <br>
+    NOTE: The "Total # of Students Tested" for Grade 8 Math may appear much lower than other years or grade levels. This could be
+    due to 8th grade students opting to take Regents Math Exam instead of Math Assessment Test. Please contact the school district to find out the exact reason.
+</div>
+<br><br><br><br><br>
+{% endblock content %}

@@ -1,0 +1,24 @@
+{% extends "nyed/base_correlation.html" %}
+{% load static %}
+
+{% block content %}
+    <div id=main_content>
+        {% if error_msg %}
+            <h3> {{ error_msg }} </h3>
+            <br>
+        {% endif %}  
+        <br><br>                      
+        <img src="data:image/png;base64, {{ela_scatter_plot|safe}}" class='data_img'>
+        <br>    
+        <h4>Pearson's Correlation R-value = {{ela_pearsons_rval}}</h4>
+        <p>{{ ela_corr_strength}}</p>
+        <br><br>                      
+        <img src="data:image/png;base64, {{math_scatter_plot|safe}}" class='data_img'>
+        <br>    
+        <h4>Pearson's Correlation R-value = {{math_pearsons_rval}}</h4>
+        <p>{{ math_corr_strength}}</p>
+    </div>
+
+    <br><br>
+    
+{% endblock content %}

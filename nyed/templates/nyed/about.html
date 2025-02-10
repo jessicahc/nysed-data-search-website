@@ -1,0 +1,132 @@
+{% extends "nyed/base.html" %}
+
+{% block sidebar %}
+    <aside id="sidebar">
+    <h4 class="search_title">About This Website</h4>
+    <hr class="search_seperator">
+    <p>Updated: September, 2021</p>
+    </aside>
+{% endblock sidebar %}
+
+{% block content %}
+    <div id=main_content>
+    <h3>Who built this website?</h3>
+    <p>This website is developed and maintained by <i>Sourfig</i>, a high school senior who loves to explore technology and data.</p>
+
+    <h3>What inspired you to build this website?</h3>
+    <p>As we all know, the COVID pandemic has severely impacted students’ learning across all grade levels. When the NYS Education Department (NYSED) announced
+    in spring 2021 that most of high school Regents exams would be cancelled and students of all grade levels would be allowed to opt out of the State's annual
+    academic assessment tests again, similar to the cancellation and exemption policy as in 2020, it prompted me
+    to ask the question: how would NYSED be able to evaluate the pandemic impact on students’ learning without adequate assessment results?
+    How has NYSED been measuring and tracking students’ academic progress in order to provide support and intervention to schools prior to the pandemic?
+    </p>
+    <p>While researching the NYSED website to seek answers, I discovered that NYSED has recently created
+    a new website called <a href="http://data.nysed.gov">“Data Dashboard”</a> (http://data.nysed.gov) which aims to provide the public with transparency
+    to schools’ essential data, such as G3-G8 ELA/Math assessment test results, demographics, average class size, teachers' qualifications, etc.  While the website
+    does supply valuable education information and data, I noticed some issues in the way certain data are presented:
+    <br><br>
+    1.  The NYSED website says that the assessment data is meant to “reflect students’ progress toward college and career readiness”. However,
+    its presentation model only displays data of the most recent two consecutive years to illustrate students’ academic progress. This model
+    not only is inadequate for showing students’ progress from lower to high grade levels, but also appears obsecure to viewers. For example, looking at 
+    the following screenshot photo taken from the NYSED website, which is supposedly meant
+    to show the ELA assessment test data of Grade 3 students at South Salem Elementary School, can you quickly tell what information this bar graph
+    is trying to convey to us?
+    <br><br>
+    <img src="http://sourfig.pythonanywhere.com/static/nyed/SalemSample1.jpg" width="110%" height="110%">
+    <br><br>
+
+    2.  Some parts of the data presentation model seem to exhibit misleading information because the model uses
+    students' assessment data from two different years but of the same grade level for comparison. For example, the screenshot photo taken from the NYSED website below
+    shows that among the Grade 3 students at South Salem Elementary School, 66% of them were proficient at ELA in 2018 while 71% of them
+    were proficient at ELA in 2019.  If the viewers only paid attention to the percentage increase from 2018 to 2019, they would have concluded that
+    Grade 3 students at Salem Elementary School had shown good improvement in ELA.  However, this conclusion is incorrect
+    because Grade 3 of class 2018 is a completely different cohort of children from Grade 3 of class 2019. Therefore, their performances
+    are incomparable and do not indicate any academic improvement or regression.
+    <br><br>
+    <img src="http://sourfig.pythonanywhere.com/static/nyed/SalemSample2.jpg" width="110%" height="110%">
+    <br><br>
+
+    <p>After discovering these issues, I asked myself if I could design a better data visualization model to accurately capture and illustrate
+    the multi-year academic performances of a student cohort as the students progress from elementary to middle school.</p>
+
+    <p>In addition, I noticed significant gaps in students' ELA and Math proficiencies across different school districts. 
+    I was curious: what could have caused such disparity? Is there any correlation between students’ academic performance and external
+    factors that might affect their performance, such as schools' average class size, student families' financial status, etc?
+    </p>
+    <p>With these questions in mind, I decided to combine my knowledge acquired from Statistics class and my interest in data analytics and computer programming
+    to conduct my own research.
+    </p>
+
+    <h3>What is the objective of this website?</h3>
+    <p>The objectives of my research project are:
+    <ul>
+    <li>To provide parents and educators insights into New York State's education system by:<br><br>
+    a) creating a data visualization model that accurately illustrates the academic performance of a student cohort
+    from Grade 3 to Grade 8 so that parents and educators can easily visualize the students’ progress and evaulate school’s performance.
+    <br><br>
+    b) developing a data analysis model to investigate if there’s any correlation between students’ academic performance and
+    external factors that might have affected their performance, such as schools' average class size, student families' financial status.
+    <br><br></li>
+    <li>To share ideas and findings with fellow data science/information science/computing technology enthusiasts.</li>
+    </ul>
+    </p>
+
+    <h3>Where did you get your datasets?</h3>
+    <p>NYSED provides free datasets from year 1999 to present at <a href="https://data.nysed.gov/downloads.php">https://data.nysed.gov/downloads.php</a>.
+    Many thanks to NYSED for providing such valuable data.</p>
+
+    <h3>What programming languages and tools did you use to build this website?</h3>
+    <p>Python (Django, matplotlib, etc.), MySQL, Javascript, HTML & CSS</p>
+
+    <h3>What are the challenges you encountered while developing this site?</h3>
+    <p>There were many challenges I encountered during this project. In addition to applying the basic programming skills
+    I acquired from AP Computer Science courses, I had to do a lot of self-learning to pick up new knowledge and skills as
+    I worked on each component of this project.  The most challenging parts of the project are:
+    <ul>
+    <li><b>Converting datasets to MySQL:</b> the original datasets provided by NYSED are in MS Access or Excel files. I had to convert and inject them into MySQL
+    for my programs to process. Although my computer has Windows 10 and MS Access installed, I had trouble exporting the data from MS Access to MySQL directly.
+    Eventually I figured out to use MS SQL Server as an intermediary database, which means I had export the data from MS Access to SQL Server first, then export
+    them again from SQL Server to MySQL.
+    </li>
+    <li><b>Handling data quality issues:</b> NYSED provides about 20 years worth of datasets. The datasets prior to 2013 are stored in different data schedma from
+    those of the more recent years. Even among the recent-year datasets, the schemas are not consistent; some data are incorrect (e.g. a column that is supposed to contain
+    percentage values may have values >100). Therefore, I had to examine and compare each set of data and schema carefully. I often had to write SQL code to filter,
+    or correct the erroneous data. It was a time-consuming task.
+    </li>
+    </ul>
+    </p>
+
+    <h3>What other websites would you recommend to people who are also interested in data science or data analytics?</h3>
+    <p>While working on this project, I discovered that many U.S. government websites now provide free historical datasets.
+    Here is a list of websites I find very helpful:
+    <ul>
+        <li><a href="https://data.ny.gov/">New York State Open Data Project</a></li>
+        <li><a href="https://opendata.cityofnewyork.us/">New York City Open Data</a></li>
+        <li><a href="https://datasetsearch.research.google.com/">Google's Data Search Site </a></li>
+        <li><a href="http://www.kaggle.com">www.kaggle.com</a></li>
+        <li><a href="http://www.towardsdatascience.com">Towards Data Science.com</a></li>
+        <li><a href="https://github.com/awesomedata/awesome-public-datasets">Github Awesome Datasets</a></li>
+    </ul>
+    </p>
+
+    <h3>Why is this website's URL "sourfig.pythonanywhere.com"?</h3>
+    <p>Thanks to www.pythonanywhere.com company, I'm currently using a <i>free</i> account offered by pythonanywhere.com to host this website. "Sourfig" is the account name.</p>
+
+    <h3>Why doesn't this website provide data prior to year 2012?</h3>
+    <p>In order to host this website, the data must be stored in a database provided by the web hosting company www.pythonanywhere.com.
+    Since I'm using its free hosting service, the data storage space is very limited as per pythonanywhere.com's service plan. Even though NYSED provides data before year 2012,
+    I cannot fit all of them into the database. I decided to use the most recent years of data for this project and tried to fit as much data as permitted.
+    </p>
+
+    <h3>What does "Sourfig" mean?</h3>
+    <p>You gussed it - fig is one of my favorite fruits. Although I prefer sweet figs, I think "sourfig" is easier to spell and enunciate. Just like each fig harvested from a fig tree
+    carrying a slightly different color, shape, and flavor, every piece of data embodies a unique story to tell. And it's up to us to uncover its story.
+    </p>
+    <br>
+    <img src="http://sourfig.pythonanywhere.com/static/nyed/figs.jpg" width="45%" height="45%">
+
+
+    </div>
+    <br><br>
+
+{% endblock content %}

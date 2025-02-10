@@ -1,0 +1,89 @@
+{% extends "nyed/base.html" %}
+
+{% block sidebar %}
+
+    <aside id="sidebar">
+        <h4 class="search_title">Search G3-8 ELA/Math Assessment Data History by Student Group</h4>
+        <hr class="search_seperator">
+        <form action="{% url 'nyed:assessment_data' %}" method="get">
+            {% csrf_token %}          
+            <label for='entity' class="search_instruct">Enter a District or School Name:</label><br>            
+            <input type="text" id="entity_name" name="entity_name" value="{{ req_entity_name }}" placeholder="Type to search e.g. Herricks"/><br>            
+            <label for='year' class="search_instruct">Select a School Year:</label><br>
+            <select id="year" name="year">
+                <option value="2013">2012-2013</option>
+                <option value="2014">2013-2014</option>
+                <option value="2015">2014-2015</option>
+                <option value="2016">2015-2016</option>
+                <option value="2017">2016-2017</option>
+                <option value="2018">2017-2018</option>
+                <option value="2019">2018-2019</option>
+            </select><br>
+            <label for='grade' class="search_instruct">Select a Grade Level:</label><br>
+            <select id="grade" name="grade">
+                <option value="3">Grade 3</option>
+                <option value="4">Grade 4</option>
+                <option value="5">Grade 5</option>
+                <option value="6">Grade 6</option>
+                <option value="7">Grade 7</option>
+                <option value="8">Grade 8</option>
+            </select>
+            <input type="hidden" id="entity_bedscode" name="entity_bedscode" value="{{req_beds_code}}"/><br>
+            <br>
+            <input type="submit" value="Submit"/>            
+            <script>
+                $( function() {
+                  var resultSet = [
+                      {% for beds_mapping in beds_mapping_list %}
+                        { label:"{{beds_mapping.name_desc}}", value:"{{beds_mapping.beds_code}}" },
+                      {% endfor %}
+                  ];
+                  $( "#entity_name" ).autocomplete({
+                      source: resultSet,
+                      minLength: 3,
+                      autoFocus: false, //Don't automatically select the 1st item when spacebar typed
+                      select: function (event, ui) { 
+                        $("#entity_name").val(ui.item.label);
+                        $("#entity_bedscode").val(ui.item.value);
+                        return false;
+                      },
+                      focus: function(event, ui) {
+                          $("#entity_name").val(ui.item.label);
+                          $("#entity_bedscode").val(ui.item.value);
+                          return false; // Prevent the widget from inserting the value.
+                      }
+                  });
+                });
+            </script>            
+        </form>
+    </aside>
+{% endblock sidebar %}
+
+{% block content %}
+
+    <div id="main_content">
+        {% if error_msg %}
+            <h3> {{ error_msg }} </h3>
+            <br>
+        {% endif %}  
+        
+        <h2>How is your students' academic progress?</h2>
+    
+        <p>This section allows you to search for and view detailed history of NYS ELA & Math Assessment Test Results
+        of a particular student group from grade 3 to 8.  For example, if your student(s)
+        attended Grade 4 in 2014/2015 school year, you will see how your student(s) and the fellow schoolmates performed
+        on NYS ELA & Math Assessment Tests from Grade3 2014 to Grade 8 2019.
+        <br><br>
+        To view a student group's assessment data history, please: </p>
+        <ol>
+            <li> Enter the name of a district or school.
+                 <br>(To view county-wide data, enter a county name.)</li>
+            <li> Select the "School Year" in which the student(s) attanded the district or school.</li>
+            <li> Select the "Grade Level" that the student(s) attended during that school year </li>
+            <li> Click "Search". </li>
+        </ol>
+        Data Source:<br>
+        All assessment data are based on the open datasets provided by <a href="http://data.nysed.gov" target=_blank>New York State Education Department</a>
+        </p>
+    </div>
+{% endblock content %}
