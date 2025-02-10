@@ -1,5 +1,5 @@
-[New York State Education Data Research Website] (https://sourfig.pythonanywhere.com/)
-# What is the objective of this website?
+#[New York State Education Data Research Website] (https://sourfig.pythonanywhere.com/)
+## What is the objective of this website?
 The objectives of this research project are:
 
 To provide educators and parents insights into New York State's education system by:
@@ -10,5 +10,5 @@ b) Developing a data analysis model to investigate if there’s any correlation 
 
 To share ideas and findings with fellow Computer Science & Data Science enthusiasts.
 
-# What programming languages and tools are used to build this website?
+## What programming languages and tools are used to build this website?
 Python (Django, matplotlib, etc.), MySQL, Javascript, HTML & CSS
