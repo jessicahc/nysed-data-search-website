@@ -1,4 +1,4 @@
-#[New York State Education Data Research Website] (https://sourfig.pythonanywhere.com/)
+# [New York State Education Data Research Website] (https://sourfig.pythonanywhere.com/)
 ## What is the objective of this website?
 The objectives of this research project are:
 
